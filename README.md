@@ -20,9 +20,9 @@ Yêu cầu **GIT**
 Yêu cầu **bắt buộc**
 * [x] Viết script tạo cấu trúc cơ sở dữ liệu (**1412553**)
 * [ ] Viết script thêm dữ liệu (**MSSV**)
-* [ ] Tạo tài khoản cho các nhân viên trong bảng Nhân Viên. Tên tài khoản trùng với mã nhân viên. Tạo ít nhất 5 tài khoản cho mỗi vị trí: trưởng dự án, trưởng phòng, trưởng chi nhánh, nhân viên, giám đốc và ít nhất 5 dòng cho các bảng dữ liệu còn lại. (**MSSV**)
-* [ ] Tạo các role cho các vị trí phù hợp cho công ty. (**MSSV**)
-* [ ] Chỉ trưởng phòng được phép cập nhật và thêm thông tin vào dự án (DAC). (**MSSV**)
+* [x] Tạo tài khoản cho các nhân viên trong bảng Nhân Viên. Tên tài khoản trùng với mã nhân viên. Tạo ít nhất 5 tài khoản cho mỗi vị trí: trưởng dự án, trưởng phòng, trưởng chi nhánh, nhân viên, giám đốc và ít nhất 5 dòng cho các bảng dữ liệu còn lại. (**MSSV**)
+* [x] Tạo các role cho các vị trí phù hợp cho công ty. (**MSSV**)
+* [x] Chỉ trưởng phòng được phép cập nhật và thêm thông tin vào dự án (DAC). (**MSSV**)
 * [ ] Giám đốc được phép xem thông tin dự án gồm (mã dự án, tên dự án, kinh phí, tên phòng chủ trì, tên chi nhánh chủ trì, tên trưởng dự án và tổng chi) (DAC). (**MSSV**)
 * [ ] Chỉ trưởng phòng, trưởng chi nhánh được cấp quyền thực thi stored procedure cập nhật thông tin phòng ban của mình (DAC). (**MSSV**)
 * [ ] Tất cả nhân viên bình thường (trừ trưởng phòng, trưởng chi nhánh và các trưởng dự án) chỉ được phép xem thông tin nhân viên trong phòng của mình, chỉ được xem lương của bản thân (VPD). (**MSSV**)
