@@ -1,9 +1,9 @@
---CREATE USER vai trò dba---
+--TẠO USER VỚI VAI TRÒ LÀ dba---
 CREATE USER ATBM1 IDENTIFIED BY "tqhba29041995"
 DEFAULT TABLESPACE users
 TEMPORARY TABLESPACE temp
 PROFILE DEFAULT;
---cap quyen voi vai trò là dba----
+--CẤP QUYỀN VỚI VAI TRÒ LÀ dba----
 GRANT ALL PRIVILEGES TO ATBM1 WITH ADMIN OPTION;
 GRANT dba, CONNECT TO ATBM1;
 
@@ -64,3 +64,6 @@ CREATE TABLE PHANCONG
   PRIMARY KEY (MANV, MADA)
 );
 ----------------------------------------------------------
+-- insert data ---
+--NHANVIEN--
+INSERT INTO NHANVIEN VALUES ('BS1412123', 'Nguy?n V?n Tài', '15/12/1995', 'Phú Yên', 'Nam', 'PB01', 'MCN01');
