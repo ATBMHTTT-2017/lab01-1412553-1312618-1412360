@@ -67,3 +67,8 @@ CREATE TABLE PHANCONG
 -- insert data ---
 --NHANVIEN--
 INSERT INTO NHANVIEN VALUES ('BS1412123', 'Nguyễn Văn Tài', '15/12/1995', 'Phú Yên', 'Nam', 'PB01', 'MCN01');
+INSERT INTO NHANVIEN VALUES ('BS1413323', 'Nguyễn Trung Tính', '15/05/1994', 'Phú Thọ', 'Nam', 'PB02', 'MCN02');
+INSERT INTO NHANVIEN VALUES ('BS1414423', 'Huỳnh Văn Bánh', '20/12/1995', 'Hưng Yên', 'Nam', 'PB03', 'MCN03');
+INSERT INTO NHANVIEN VALUES ('BS1012123', 'Lê Tấn Lợi', '20/12/1990', 'Bình Định', 'Nam', '', '');
+INSERT INTO NHANVIEN VALUES ('BS1415423', 'Huỳnh Thúc Văn', '20/12/1992', 'Khánh Hòa', 'Nam', 'PB03', 'MCN02');
+INSERT INTO NHANVIEN VALUES ('BS1412125', 'Nguyễn Văn Tuyền', '15/12/1995', 'Phú Yên', 'Nam', 'PB01', 'MCN01');
