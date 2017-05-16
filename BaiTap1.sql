@@ -66,4 +66,4 @@ CREATE TABLE PHANCONG
 ----------------------------------------------------------
 -- insert data ---
 --NHANVIEN--
-INSERT INTO NHANVIEN VALUES ('BS1412123', 'Nguy?n V?n Tài', '15/12/1995', 'Phú Yên', 'Nam', 'PB01', 'MCN01');
+INSERT INTO NHANVIEN VALUES ('BS1412123', 'Nguyễn Văn Tài', '15/12/1995', 'Phú Yên', 'Nam', 'PB01', 'MCN01');
