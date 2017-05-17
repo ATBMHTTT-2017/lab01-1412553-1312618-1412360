@@ -8,6 +8,7 @@ PROFILE DEFAULT;
 GRANT ALL PRIVILEGES TO EXBT WITH ADMIN OPTION;
 GRANT dba, CONNECT TO EXBT WITH ADMIN OPTION;
 --bắt đầu tạo bảng và cấp quyền thực hiện các yêu cầu-----
+-------------------------------------------------------------------------------------------------
 -----Script------
 CREATE TABLE NHANVIEN
 (
