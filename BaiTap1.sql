@@ -1,12 +1,12 @@
 --Phần tạo user với vai trò dưới quyền sa-----
 --CREATE USER vai trò dba---
-CREATE USER EXBT IDENTIFIED BY "tqhba29041995"
+CREATE USER LABBT IDENTIFIED BY "tqhba29041995"
 DEFAULT TABLESPACE users
 TEMPORARY TABLESPACE temp
 PROFILE DEFAULT;
 --cấp quyền với trò là dba----
-GRANT ALL PRIVILEGES TO EXBT WITH ADMIN OPTION;
-GRANT dba, CONNECT TO EXBT WITH ADMIN OPTION;
+GRANT ALL PRIVILEGES TO LABBT WITH ADMIN OPTION;
+GRANT dba, CONNECT TO LABBT WITH ADMIN OPTION;
 --bắt đầu tạo bảng và cấp quyền thực hiện các yêu cầu-----
 ------------------------------------------------------------------------------------------------------
 -----Script------
