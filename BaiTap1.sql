@@ -19,6 +19,7 @@ CREATE TABLE NHANVIEN
   GIOITINH VARCHAR(20),
   MAPB VARCHAR(20),
   MACN VARCHAR(20),
+  LUONG VARCHAR(20),
   PRIMARY KEY(MANV)
 );
 CREATE TABLE DUAN
@@ -60,13 +61,14 @@ CREATE TABLE PHANCONG
 ----------------------------------------------------------
 ------INSERT DATA----
 ---NHANVIEN---
-INSERT INTO NHANVIEN VALUES ('BS1412123', 'Nguyễn Văn Tài', '15/12/1995', 'Phú Yên', 'Nam', 'PB01', 'MCN01');
-INSERT INTO NHANVIEN VALUES ('BS1421124', 'Nguyễn Văn Tú', '15/12/1990', 'Phú Thọ', 'Nam', 'PB02', 'MCN02');
-INSERT INTO NHANVIEN VALUES ('BS1412125', 'Nguyễn Văn Huân', '15/12/1995', 'Phú Yên', 'Nam', 'PB03', 'MCN03');
-INSERT INTO NHANVIEN VALUES ('BS1412126', 'Nguyễn Trung Tính', '15/05/1994', 'Phú Thọ', 'Nam', 'PB01', 'MCN01');
-INSERT INTO NHANVIEN VALUES ('BS1412127', 'Huỳnh Văn Bánh', '20/12/1995', 'Hưng Yên', 'Nam', 'PB02', 'MCN02');
-INSERT INTO NHANVIEN VALUES ('BS1412128', 'Huỳnh Thúc Văn', '20/12/1992', 'Khánh Hòa', 'Nam', 'PB03', 'MCN03');
-INSERT INTO NHANVIEN VALUES ('BS1012123', 'Lê Tấn Lợi', '20/12/1990', 'Bình Định', 'Nam', '', '');  --GIAMDOC
+INSERT INTO NHANVIEN VALUES ('BS1412123', 'Nguyễn Văn Tài', '15/12/1995', 'Phú Yên', 'Nam', 'PB01', 'MCN01', '1000');
+INSERT INTO NHANVIEN VALUES ('BS1421124', 'Nguyễn Văn Tú', '15/12/1990', 'Phú Thọ', 'Nam', 'PB02', 'MCN02', '2000');
+INSERT INTO NHANVIEN VALUES ('BS1412125', 'Nguyễn Văn Huân', '15/12/1995', 'Phú Yên', 'Nam', 'PB03', 'MCN03','1200');
+INSERT INTO NHANVIEN VALUES ('BS1412126', 'Nguyễn Trung Tính', '15/05/1994', 'Phú Thọ', 'Nam', 'PB01', 'MCN01', '1300');
+INSERT INTO NHANVIEN VALUES ('BS1412127', 'Huỳnh Văn Bánh', '20/12/1995', 'Hưng Yên', 'Nam', 'PB02', 'MCN02', '1350');
+INSERT INTO NHANVIEN VALUES ('BS1412128', 'Huỳnh Thúc Văn', '20/12/1992', 'Khánh Hòa', 'Nam', 'PB03', 'MCN03', '1200');
+INSERT INTO NHANVIEN VALUES ('BS1012123', 'Lê Tấn Lợi', '20/12/1990', 'Bình Định', 'Nam', '', '','3000');  --GIAMDOC
+
 select * from NHANVIEN;
 
 ---DUAN---
