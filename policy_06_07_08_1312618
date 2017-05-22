@@ -94,6 +94,10 @@ select maChiTieu, tenChiTieu, soTien, duAn, truongPhong
 from (ChiTieu join DuAn on (ChiTieu.duAn = DuAn.maDA))
 join PhongBan on DuAn.phongChuTri = PhongBan.maPhong;
 
+-- tạo role trưởng phòng
+create role TRUONGPHONG;
+
+-- Cấp quyền đọc trên view ThongTinChiTieu_PhongBan cho trưởng phòng
 grant select on ThongTinChiTieu_PhongBan to TRUONGPHONG;
 
 create or replace function xemSoTien (
@@ -108,10 +112,11 @@ end;
 
 begin
 dbms_rls.add_policy (
-  object_schema => 'sys',
+  object_schema => 'anonymous',
   object_name => 'ThongTinChiTieu_PhongBan',
   policy_name => 'xemSoTien_Phong',
   function_schema => 'sys',
   policy_function => 'xemSoTien',
   sec_relevant_cols => 'soTien', sec_relevant_cols_opt => dbms_rls.ALL_ROWS);
 end;
+
