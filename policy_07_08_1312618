@@ -1,5 +1,47 @@
 # sample policy 1
 
+
+-- Yeu cau 6: Tất cả nhân viên bình thường (trừ trưởng phòng, trưởng chi nhánh và các trưởng dự án) chỉ được phép xem thông tin nhân viên
+--            trong phòng của mình, chỉ được xem lương của bản thân (VPD)
+
+-- Tạo role nhân viên
+create role NHANVIEN;
+
+-- Tạo view NhanVien_PhongBan
+create or replace view NhanVien_PhongBan
+as
+select hoTen, diaChi, dienThoai, email, maPhong, chiNhanh, luong
+from NhanVien join PhongBan on NhanVien.maPhong = PhongBan.maPhong;
+
+-- Cấp quyền đọc trên view NhanVien_PhongBan cho nhân viên
+grant select on NhanVien_PhongBan to NHANVIEN;  
+
+-- Tạo policy
+create or replace function NHAN_VIEN (
+p_schema in varchar2 default null, p_obj in varchar2 default null)
+return varchar2
+as
+  user varchar2(100);
+begin
+    user := sys_context('userenv', 'session_user');
+    return 'maNV = lower('''||user||''')';
+end;
+
+-- Gắn hàm chính sách
+begin
+dbms_rls.add_policy (
+object_schema => 'sys',
+object_name => 'NhanVien_PhongBan',
+policy_name => 'XEM_NHANVIEN',
+function_schema => 'sys',
+policy_function => 'NHAN_VIEN',
+sec_relevant_cols => 'luong', 
+sec_relevant_cols_opt => dbms_rls.ALL_ROWS);
+);
+end;
+
+--------------------------------------------------------------------------------------------------------------------
+
 -- Yeu cau 7: Trưởng dự án chỉ được phép đọc, ghi thông tin chi tiêu của dự án mình quản lý(VPD) - 1312618
 
 -- Tạo view ChiTieu
@@ -35,7 +77,7 @@ update_check => TRUE
 );
 end;
 
-
+--------------------------------------------------------------------------------------------------------------------
 
 -- Yêu cầu 8: Trưởng phòng được phép đọc thông tin chi tiêu của dự án trong phòng ban mình quản lý. Với những dự án không thuộc phòng ban của mình
 --             các trưởng phòng được phép xem thông tin chi tiêu nhưng không được phép xem số tiền cụ thể (VPD) - 1312618
