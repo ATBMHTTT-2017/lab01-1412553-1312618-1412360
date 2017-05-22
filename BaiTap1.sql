@@ -145,3 +145,18 @@ GRANT CREATE SESSION TO BS1412125 WITH ADMIN OPTION;
 GRANT TRUONGDUAN TO BS1412125;
 -------------------------------------------------------------
 
+---test-----
+---- Giám đốc được phép xem thông tin dự án gồm 
+----(mã dự án, tên dự án, kinh phí, tên phòng chủ trì, tên chi nhánh chủ trì, tên trưởng dự án và tổng chi)
+SELECT * FROM LABBT.DUAN;
+
+----- Chỉ trưởng phòng được phép cập nhật và thêm thông tin vào dự án
+
+UPDATE LABBT.DUAN
+SET KINHPHI = '7000'
+WHERE MADA = 'DA01' AND KINHPHI = '6000';
+
+--thêm thông tin dự án
+INSERT INTO LABBT.DUAN VALUES ('DA8','Dự Án 8', '5000', 'PB02', 'CN03', 'BS1412124', '6000');
+
+
