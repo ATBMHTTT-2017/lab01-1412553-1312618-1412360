@@ -81,3 +81,44 @@ INSERT INTO LABBT.DUAN VALUES ('DA8','Dự Án 8', '5000', 'PB02', 'CN03', 'BS14
 
 -----------------------------------------------------------------------------------------------------
 
+BEGIN
+SA_SYSDBA.CREATE_POLICY (
+policy_name => 'ACCESS_DUAN',
+column_name => 'OLS_COLUMN');
+END;
+/
+
+GRANT ACCESS_DUAN_DBA TO BS1012123;
+-- Package dùng để tạo ra các thành phần của nhãn
+GRANT EXECUTE ON sa_components TO BS1012123;
+
+-- Package dùng để tạo các nhãn
+GRANT EXECUTE ON sa_label_admin TO BS1012123;
+
+-- Package dùng để gán chính sách cho các table/schema
+GRANT EXECUTE ON sa_policy_admin TO BS1012123;
+
+GRANT ACCESS_DUAN_DBA TO LABBT;
+
+-- Package dùng để gán các label cho user
+GRANT EXECUTE ON sa_user_admin TO LABBT;
+
+
+BEGIN
+sa_sysdba.create_policy
+(policy_name    => 'Policy');
+END;
+/
+
+BEGIN
+sa_components.create_level
+(policy_name   => 'Policy',
+long_name      => 'foo',
+short_name     => 'bar',
+level_num      => 9);
+END;
+/
+
+
+
+
