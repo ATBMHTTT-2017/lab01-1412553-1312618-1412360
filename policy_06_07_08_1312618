@@ -5,16 +5,10 @@
 --            trong phòng của mình, chỉ được xem lương của bản thân (VPD)
 
 -- Tạo role nhân viên
-create role NHANVIEN;
+create role NHANVIENROLE;
 
--- Tạo view NhanVien_PhongBan
-create or replace view NhanVien_PhongBan
-as
-select hoTen, diaChi, dienThoai, email, maPhong, chiNhanh, luong
-from NhanVien join PhongBan on NhanVien.maPhong = PhongBan.maPhong;
-
--- Cấp quyền đọc trên view NhanVien_PhongBan cho nhân viên
-grant select on NhanVien_PhongBan to NHANVIEN;  
+-- Cấp quyền đọc trên table NhanVien cho nhân viên
+grant select on NhanVien to NHANVIENROLE;  
 
 -- Tạo policy
 create or replace function NHAN_VIEN (
@@ -30,13 +24,13 @@ end;
 -- Gắn hàm chính sách
 begin
 dbms_rls.add_policy (
-object_schema => 'sys',
-object_name => 'NhanVien_PhongBan',
+object_schema => 'anonymous',
+object_name => 'NhanVien',
 policy_name => 'XEM_NHANVIEN',
 function_schema => 'sys',
 policy_function => 'NHAN_VIEN',
 sec_relevant_cols => 'luong', 
-sec_relevant_cols_opt => dbms_rls.ALL_ROWS);
+sec_relevant_cols_opt => dbms_rls.ALL_ROWS
 );
 end;
 
@@ -73,7 +67,7 @@ dbms_rls.add_policy (
 object_schema => 'anonymous',
 object_name => 'ThongTin_ChiTieu',
 policy_name => 'TruongDuAn_ThongTinChiTieu',
-function_schema => null,
+function_schema => 'sys',
 policy_function => 'TRUONG_DA',
 statement_types => 'select, insert',
 update_check => TRUE
