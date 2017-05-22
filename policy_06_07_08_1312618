@@ -42,7 +42,8 @@ end;
 
 --------------------------------------------------------------------------------------------------------------------
 
--- Yeu cau 7: Trưởng dự án chỉ được phép đọc, ghi thông tin chi tiêu của dự án mình quản lý(VPD) - 1312618
+
+-- Yeu cau 7: Trưởng dự án chỉ được phép đọc, ghi thông tin chi tiêu của dự án mình quản lý(VPD)
 
 -- Tạo view ChiTieu
 create or replace view ThongTin_ChiTieu
@@ -50,6 +51,8 @@ as
 select maChiTieu, tenChiTieu, soTien, duAn, truongDA
 from ChiTieu join DuAn on ChiTieu.duAn = DuAn.maDA;
 
+-- tạo role trưởng dự án
+create role TRUONGDUAN;
 -- Cấp quyền đọc và quyền thêm trên view ChiTieu cho trưởng dự án
 grant select, insert on ThongTin_ChiTieu to TRUONGDUAN;  --role TRUONGDUAN đã được tạo ở phần trước
 
@@ -64,10 +67,10 @@ begin
     return 'truongDA = lower('''||user||''')';
 end;
 
--- Gắn policy TRUONG_DA vào view ThongTin_ChiTieu
+-- gắn policy TRUONG_DA vào view ThongTin_ChiTieu
 begin
 dbms_rls.add_policy (
-object_schema => 'sys',
+object_schema => 'anonymous',
 object_name => 'ThongTin_ChiTieu',
 policy_name => 'TruongDuAn_ThongTinChiTieu',
 function_schema => null,
@@ -76,6 +79,8 @@ statement_types => 'select, insert',
 update_check => TRUE
 );
 end;
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
