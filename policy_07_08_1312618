@@ -1,0 +1,70 @@
+# sample policy 1
+
+-- Yeu cau 7: Trưởng dự án chỉ được phép đọc, ghi thông tin chi tiêu của dự án mình quản lý(VPD) - 1312618
+
+-- Tạo view ChiTieu
+create or replace view ThongTin_ChiTieu
+as
+select maChiTieu, tenChiTieu, soTien, duAn, truongDA
+from ChiTieu join DuAn on ChiTieu.duAn = DuAn.maDA;
+
+-- Cấp quyền đọc và quyền thêm trên view ChiTieu cho trưởng dự án
+grant select, insert on ThongTin_ChiTieu to TRUONGDUAN;  --role TRUONGDUAN đã được tạo ở phần trước
+
+-- Tạo policy lấy mã nhân viên
+create or replace function TRUONG_DA (
+p_schema in varchar2 default null, p_obj in varchar2 default null)
+return varchar2
+as
+  user varchar2(100);
+begin
+    user := sys_context('userenv', 'session_user');
+    return 'truongDA = lower('''||user||''')';
+end;
+
+-- Gắn policy TRUONG_DA vào view ThongTin_ChiTieu
+begin
+dbms_rls.add_policy (
+object_schema => 'sys',
+object_name => 'ThongTin_ChiTieu',
+policy_name => 'TruongDuAn_ThongTinChiTieu',
+function_schema => null,
+policy_function => 'TRUONG_DA',
+statement_types => 'select, insert',
+update_check => TRUE
+);
+end;
+
+
+
+-- Yêu cầu 8: Trưởng phòng được phép đọc thông tin chi tiêu của dự án trong phòng ban mình quản lý. Với những dự án không thuộc phòng ban của mình
+--             các trưởng phòng được phép xem thông tin chi tiêu nhưng không được phép xem số tiền cụ thể (VPD) - 1312618
+
+
+create or replace view ThongTinChiTieu_PhongBan
+as
+select maChiTieu, tenChiTieu, soTien, duAn, truongPhong
+from (ChiTieu join DuAn on (ChiTieu.duAn = DuAn.maDA))
+join PhongBan on DuAn.phongChuTri = PhongBan.maPhong;
+
+grant select on ThongTinChiTieu_PhongBan to TRUONGPHONG;
+
+create or replace function xemSoTien (
+p_schema varchar2, p_obj varchar2)
+return varchar2
+as
+  user varchar2(100);
+begin
+  user := sys_context('userenv', 'session_user');
+  return 'truongPhong = lower('''||user||''')';
+end;
+
+begin
+dbms_rls.add_policy (
+  object_schema => 'sys',
+  object_name => 'ThongTinChiTieu_PhongBan',
+  policy_name => 'xemSoTien_Phong',
+  function_schema => 'sys',
+  policy_function => 'xemSoTien',
+  sec_relevant_cols => 'soTien', sec_relevant_cols_opt => dbms_rls.ALL_ROWS);
+end;
