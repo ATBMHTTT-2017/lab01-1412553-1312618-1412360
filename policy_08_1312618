@@ -16,7 +16,7 @@ as
   user varchar2(100);
 begin
   user := sys_context('userenv', 'session_user');
-  return 'trPhong = lower('''||user||''')';
+  return 'truongPhong = lower('''||user||''')';
 end;
 
 begin
